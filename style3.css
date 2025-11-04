@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111;
+  color: #fff;
+  padding: 15px 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ff9800;
+}
+
+.cart {
+  font-size: 20px;
+}
+
+#cart-count {
+  background-color: #ff9800;
+  border-radius: 50%;
+  padding: 3px 8px;
+  margin-left: 5px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  background-color: white;
+  color: #ff5722;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background-color: #ffe0b2;
+}
+
+/* Products */
+.products {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.products h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 220px;
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.product-card button:hover {
+  background-color: #e64a19;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #111;
+  color: #fff;
+  margin-top: 40px;
+}

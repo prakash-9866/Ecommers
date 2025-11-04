@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment</title>
+  <link rel="stylesheet" href="style3.css" />
+  <style>
+    body {
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+    }
+
+    .payment-container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .payment-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .payment-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .payment-container button {
+      width: 100%;
+      background: #28a745;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .payment-container button:hover {
+      background: #218838;
+    }
+
+    /* QR Code Section */
+    .qr-section {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .qr-section img {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    .back-btn {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-container">
+    <h2>Payment Details</h2>
+
+    <form id="payment-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Card Number or UPI ID" required />
+      <input type="text" placeholder="Expiry Date (MM/YY)" required />
+      <input type="text" placeholder="CVV" required />
+      <button type="submit">Pay Now</button>
+    </form>
+
+    <!-- QR Code Section -->
+    <div class="qr-section" id="qr-section">
+      <h3>Scan to Pay</h3>
+      <img id="qr-code" src="./UPI.jpg" alt="QR Code">
+      <p>After payment, you’ll be redirected automatically.</p>
+    </div>
+
+    <a href="index3.html" class="back-btn">← Back to Shop</a>
+  </div>
+
+  <script>
+    const form = document.getElementById("payment-form");
+    const qrSection = document.getElementById("qr-section");
+    const qrCodeImg = document.getElementById("qr-code");
+
+    // Load total price from localStorage
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      if (total === 0) {
+        alert("No items in cart!");
+        window.location.href = "index3.html";
+        return;
+      }
+
+      // Generate a payment QR dynamically using API
+      const paymentData = `Pay ₹${total} to MyShop`;
+      const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentData)}`;
+
+      // Show QR section
+      qrCodeImg.src = qrURL;
+      qrSection.style.display = "block";
+      form.style.display = "none";
+
+      // Simulate payment confirmation
+      setTimeout(() => {
+        alert("✅ Payment successful! Thank you for shopping with MyShop.");
+        localStorage.removeItem("cart");
+        window.location.href = "index3.html";
+      }, 8000); // auto-redirect after 8 seconds
+    });
+  </script>
+
+</body>
+</html>
